@@ -1,15 +1,16 @@
 const net = require("net");
+const constants = require("./constants");
 
 const connect = function () {
   const conn = net.createConnection({
-    host: '165.227.47.243',
-    port: 50541
+    host: constants.IP,
+    port: constants.PORT
   });
 
   conn.setEncoding("utf8");
   conn.on('connect', () => {
     console.log("Connected to game server!");
-    conn.write("Name: NAL");
+    conn.write(constants.Name);
   });
 
   conn.on('data', data => {

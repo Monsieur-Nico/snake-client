@@ -1,6 +1,10 @@
 const stdin = process.stdin;
+const constants = require("./constants");
 
-const setupInput = function () {
+let connection;
+
+const setupInput = (conn) => {
+  connection = conn;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
@@ -13,16 +17,23 @@ const handleUserInput = function (key) {
       case '\u0003':
         process.exit();
       case 'a':
-        conn.write("Move: left");
+        connection.write(constants.gameKeys.a);
         break;
       case 'd':
-        conn.write("Move: right");
+        connection.write(constants.gameKeys.d);
         break;
       case 's':
-        conn.write("Move: down");
+        connection.write(constants.gameKeys.s);
         break;
       case 'w':
-        conn.write("Move: up");
+        connection.write(constants.gameKeys.w);
+        break;
+      case 'l':
+        connection.write(constants.gameKeys.l);
+        break;
+      case 'k':
+        connection.write(constants.gameKeys.k);
+        break;
     }
 };
 
